@@ -10,10 +10,10 @@
 `arduino-cli board list`
 
 3️⃣ Compile code:
-`arduino-cli compile --fqbn arduino:samd:nano_33_iot blink`
+`arduino-cli compile --fqbn arduino:avr:uno blink`
 
 4️⃣ Upload code
-`arduino-cli upload -p COM7 --fqbn arduino:samd:nano_33_iot blink`
+`arduino-cli upload -p COM13 --fqbn arduino:avr:uno blink`
 
 
 ### Issues & fixes
