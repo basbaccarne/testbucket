@@ -1,8 +1,6 @@
 ### General
 ⚙️ [Set-up](https://github.com/basbaccarne/HybridPrototypingTemplates/tree/main/arduino_VSC)
 
-
-
 1️⃣ Search board name:
 `arduino-cli board listall | findstr nano`
 
@@ -14,7 +12,6 @@
 
 4️⃣ Upload code
 `arduino-cli upload -p COM13 --fqbn arduino:avr:uno blink`
-
 
 ### Issues & fixes
 ⚠️ Arduino Nano sometimes needs the old bootloader
