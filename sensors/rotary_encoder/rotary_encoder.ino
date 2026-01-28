@@ -1,55 +1,55 @@
-// Code to test the Pimoroni RGB Encoder Breakout (PIM522)
-// Wiring: connect power, ground, SDA & SCL
-// You'll need the IOExpander_Library
-// (https://github.com/ZodiusInfuser/IOExpander_Library/)
+// Rotary Encoder Example:
+// This code reads a rotary encoder connected to digital pins 2 and 3
+// and prints the position to the Serial Monitor. It also detects button
+// presses on pin 4.
 
-// The code sets the led to green and prints out the encoder count as it
-// changes.
+// Wiring:
+// Connect the encoder's A output to pin D2
+// Connect the encoder's B output to pin D3
+// Connect the encoder's switch output to pin 4
+// Connect both grounds
 
-#include <EncBreakout.h>
-#include <Wire.h>
+#define PIN_A 2   // Encoder output A
+#define PIN_B 3   // Encoder output B
+#define PIN_SW 4  // Encoder push-button
 
-EncBreakout enc(Wire, 0x0F);  // I2C polling mode
-
-/* info:
-The line abocve creates an EncBreakout object named enc that stores:
-* A reference to the I²C bus (Wire)
-* The I²C address (0x0F=default)
-
-This does NOT talk to the hardware yet
-No I²C traffic happens here (it just sets up internal variables).
-*/
+int position = 0;  // Variable to store encoder position
+int lastA = HIGH;  // Variable to store last state of A
 
 void setup() {
   Serial.begin(9600);
 
-  // Initialize the Arduino as an I²C master & enable SDA/SCL pins
-  Wire.begin();
-
-  // enc.initialise() sends an I²C request to address 0x0F
-  if (!enc.initialise()) {
-    Serial.println("Encoder not found");
-    while (1);
-  } else
-    Serial.println("Encoder found");
-
-  enc.setRGB(0, 255, 0);  // Green = OK
+  pinMode(PIN_A, INPUT_PULLUP);
+  pinMode(PIN_B, INPUT_PULLUP);
+  pinMode(PIN_SW, INPUT_PULLUP);
 }
 
 void loop() {
-  /* enc.read() sends an I²C read request to the breakout and retrieves:
-   - Current encoder position (a signed integer)
-   - Button state (internally)
-   - Updates internal cached state inside EncBreakout object
-   */
+  int a = digitalRead(PIN_A);
+  int b = digitalRead(PIN_B);
 
-  int16_t count = enc.read();
-  static int16_t last = 0;
+  // Detect rising edge on A
+  // Logic:
+  // If A goes from LOW to HIGH, check B to determine direction
+  // If B is LOW, it's clockwise; if HIGH, it's counter-clockwise
 
-  if (count != last) {
-    Serial.println(count);
-    last = count;
+  if (a == HIGH && lastA == LOW) {
+    if (b == LOW)
+      position++;  // clockwise
+    else
+      position--;  // counter-clockwise
+    Serial.print("Position: ");
+    Serial.println(position);
   }
 
-  delay(10);
+  // Update lastA state
+  lastA = a;
+
+  // Simple Button press detection
+  if (digitalRead(PIN_SW) == LOW) {
+    Serial.println("Button pressed!");
+    delay(200);  // debounce
+  }
+
+  delay(5);
 }

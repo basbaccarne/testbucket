@@ -7,7 +7,7 @@ repo of testsnippets
 * [Pin & Serial Check](/microcontroller/pincheck/)
 
 ## Sensors
-* [Rotary encoder with LED breakout](/sensors/rotary_encoder/)
+* [Rotary encoders](/sensors/rotary_encoder/)
 
 ## Communication
 * Bluetooth to Serial using a [HC05 bluetooth module](/communication/HC05/)
