@@ -3,8 +3,9 @@
 // 🔌 WIRING
 //
 // 📡 DATA LINE:
-// Arduino Pin 6 ──[330–470 Ω]──> DIN (NeoPixel)
-// • Resistor Protects the first LED from signal spikes
+// Arduino Pin 6 ──> DIN (NeoPixel)
+// • For longer cables (30cm+), add 330–470 Ω in series to damp signal reflections
+// • For short connections, omit the resistor — it can cause signal failures
 //
 // ⚡ POWER:
 // • Use a stable 5V EXTERNAL power supply
