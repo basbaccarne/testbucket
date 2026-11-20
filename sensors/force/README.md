@@ -36,7 +36,6 @@ An S-Type load cell (also called an S-beam load cell) is a force sensor shaped l
 
 **Code**
 ```cpp
-
 #include "HX711.h"
 
 // HX711 connections
@@ -46,6 +45,7 @@ An S-Type load cell (also called an S-beam load cell) is a force sensor shaped l
 HX711 scale;
 
 // Calibration factor (calibrated using a 258 gram weight)
+// You will need to adjust this value based on your specific load cell and calibration process.
 float calibration_factor = 87729.0;
 
 void setup() {
@@ -119,6 +119,4 @@ void loop() {
 
 
 **Notes**
-
-* The GND and AGND are not connected on the HX11. Connect GND to pin 5 (= E-).
 * Replace R12 with 12k to use with 3V3 on Vcc.
