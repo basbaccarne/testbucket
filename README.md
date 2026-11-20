@@ -19,8 +19,13 @@ This should also help novice e-prototyping **industrial design students**, creat
 * [Blink](/microcontroller/blink/blink.ino)
 * [Pin & Serial Check](/microcontroller/pincheck/)
 
+## Actuators
+* [audio](/actuators/audio/)
+* [ledstrips](/actuators/ledstrips/)
+
 ## Sensors
 * [Rotary encoders](/sensors/rotary_encoder/)
+* [Force sensors](/sensors/force/)
 
 ## Communication
 * Bluetooth to Serial using a [HC05 bluetooth module](/communication/HC05/)
